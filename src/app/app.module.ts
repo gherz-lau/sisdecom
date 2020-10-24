@@ -4,10 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FilebaseComponent } from './pages/filebase/filebase.component';
+import { CaptureComponent } from './pages/capture/capture.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilebaseComponent,
+    CaptureComponent
   ],
   imports: [
     BrowserModule,
