@@ -37,7 +37,7 @@
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <strong>Tamaño</strong>
-                                    <span>{{file.fileSize}}</span>
+                                    <span>{{file.fileSize | bytesFormat}}</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <strong>Registros</strong>
@@ -50,7 +50,8 @@
                         </div>
                     </div>
                     <div class="card-footer bg-white d-flex justify-content-end border-0">
-                        <button (click)="accept()" [disabled]="!file.isSuccess" class="btn btn-primary mr-3">Aceptar</button>
+                        <button (click)="accept()" [disabled]="!file.isSuccess"
+                            class="btn btn-primary mr-3">Aceptar</button>
                     </div>
                 </div>
             </div>
