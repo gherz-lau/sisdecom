@@ -1,4 +1,4 @@
 .table-container{
-    max-height: 600px;
+    max-height: calc(100vh - 45vh);
     overflow-y: auto;
 }
