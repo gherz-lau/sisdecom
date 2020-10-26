@@ -51,6 +51,9 @@ export class CaptureComponent implements OnInit {
         );
         this.setPage();
         this.acuseSearch = '';
+      } else {
+        alert('El folio ' + this.acuseSearch + ' no existe');
+        this.acuseSearch = '';
       }
     }
   }
