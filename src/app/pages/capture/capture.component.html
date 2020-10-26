@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="inp_busqueda" id="inp_busqueda"
+                                (keyup)=search($event) aria-describedby="BuscarF" placeholder="Buscar..."
+                                [(ngModel)]="acuseSearch">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs w-100">
+            <li [ngbNavItem]="1">
+                <a ngbNavLink>Acuses capturados ({{aCapturados.length}})</a>
+                <ng-template ngbNavContent class="w-100">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="javascript:;" (click)="exportAsXLSX(aCapturados)">Exportar
+                                        <span class="sr-only"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="table-container w-100">
+                        <table class="table table-striped w-100" *ngIf="aCapturados && aCapturados.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>id Programa</th>
+                                    <th>Folio Formato</th>
+                                    <th>Becario</th>
+                                    <th>CCT Escuela</th>
+                                    <th>Remesa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of aCapturados">
+                                    <td>{{item.idPrograma}}</td>
+                                    <td>{{item.folioFormato}}</td>
+                                    <td>{{item.nombreBecario}}</td>
+                                    <td>{{item.cctEscuela}}</td>
+                                    <td>{{item.remesa}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <a ngbNavLink>Acuses faltantes ({{content.length}})</a>
+                <ng-template ngbNavContent class="w-100">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="javascript:;" (click)="exportAsXLSX(content)">Exportar
+                                        <span class="sr-only"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="table-container w-100">
+                        <table class="table table-striped w-100">
+                            <thead>
+                                <tr>
+                                    <th>Programa</th>
+                                    <th>Folio Formato</th>
+                                    <th>Becario</th>
+                                    <th>CCT Escuela</th>
+                                    <th>Remesa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of pagination.pagedItems">
+                                    <td>{{item.idPrograma}}</td>
+                                    <td>{{item.folioFormato}}</td>
+                                    <td>{{item.nombreBecario}}</td>
+                                    <td>{{item.cctEscuela}}</td>
+                                    <td>{{item.remesa}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+
+                        <span *ngIf="content.length>20">{{pagination.pageSize}} acuses de {{content.length}}</span>
+                        <span *ngIf="content.length<20">{{content.length}} acuses de {{content.length}}</span>
+
+                        <ngb-pagination [collectionSize]="pagination.pager.totalPages*10" [(page)]="pagination.page"
+                            [maxSize]="5" [boundaryLinks]="true" (pageChange)="newPage($event)">
+                        </ngb-pagination>
+                    </div>
+                </ng-template>
+            </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="mt-1 w-100"></div>
+    </div>
+</div>
