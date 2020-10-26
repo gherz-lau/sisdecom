@@ -52,7 +52,7 @@ export class CaptureComponent implements OnInit {
     this.setPage();
   }
 
-  exportAsXLS(): void {
+  exportAsXLSX(): void {
     this.excelService.exportToExcel(this.content, 'my_export');
   }
 

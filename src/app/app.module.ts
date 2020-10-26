@@ -11,22 +11,15 @@ import { FilebaseComponent } from './pages/filebase/filebase.component';
 import { CaptureComponent } from './pages/capture/capture.component';
 import { FormsModule } from '@angular/forms';
 
-import {ExporterService} from './services/exporter.service'; // relative path sisdecom\src\app\core\services\exporter.service.ts
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    FilebaseComponent,
-    CaptureComponent
-  ],
+  declarations: [AppComponent, FilebaseComponent, CaptureComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ],
-  providers: [ExporterService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
