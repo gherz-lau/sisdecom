@@ -43,13 +43,15 @@ export class CaptureComponent implements OnInit {
         return f.folioFormato.toString() === this.acuseSearch;
       });
 
-      let element = this.content[index];
-      this.aCapturados.push(element);
-      this.content = this.content.filter(
-        (f) => f.folioFormato.toString() !== this.acuseSearch
-      );
-      this.setPage();
-      this.acuseSearch = '';
+      if (index >= 0) {
+        let element = this.content[index];
+        this.aCapturados.push(element);
+        this.content = this.content.filter(
+          (f) => f.folioFormato.toString() !== this.acuseSearch
+        );
+        this.setPage();
+        this.acuseSearch = '';
+      }
     }
   }
 
