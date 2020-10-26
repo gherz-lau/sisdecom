@@ -6,12 +6,13 @@ import { Injectable } from '@angular/core';
 export class PaginationService {
   getPager(totalItems: number, currentPage: number = 1, pageSize: number = 10) {
     // calculate total pages
-    let totalPages = Math.ceil(totalItems / pageSize);
+    let totalPages = Math.ceil(totalItems / pageSize); //devuelve el entero mayor o igual más próximo a un número dado
 
     // ensure current page isn't out of range
-    if (currentPage < 1) {
-      currentPage = 1;
-    } else if (currentPage > totalPages) {
+    if (currentPage < 1) { //si la pagina actual es menor que 1
+      currentPage = 1;  //entonces conviertela en 1. Ahora currentPage es 1
+      
+    } else if (currentPage > totalPages) {  
       currentPage = totalPages;
     }
 
@@ -40,6 +41,8 @@ export class PaginationService {
 
     // create an array of pages to ng-repeat in the pager control
     let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
+
+    
 
     // return object with all pager properties required by the view
     return {

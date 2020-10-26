@@ -11,6 +11,8 @@ import { FilebaseComponent } from './pages/filebase/filebase.component';
 import { CaptureComponent } from './pages/capture/capture.component';
 import { FormsModule } from '@angular/forms';
 
+import {ExporterService} from './services/exporter.service'; // relative path sisdecom\src\app\core\services\exporter.service.ts
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [ExporterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

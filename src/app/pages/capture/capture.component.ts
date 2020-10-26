@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AcuseCobro, Pagination } from 'src/app/core/models';
-import { GlobalService, PaginationService } from 'src/app/core/services';
+import { GlobalService, PaginationService, ExporterService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-capture',
   templateUrl: './capture.component.html',
   styleUrls: ['./capture.component.scss']
 })
+
 export class CaptureComponent implements OnInit {
   //total de acuses
   content: Array<AcuseCobro> = new Array<AcuseCobro>();
+
   //acuses acpturados
   aCapturados: Array<AcuseCobro> = new Array<AcuseCobro>();
 
@@ -17,22 +19,25 @@ export class CaptureComponent implements OnInit {
 
   pagination: Pagination<AcuseCobro> = new Pagination<AcuseCobro>();
   active = 1;
-  constructor(private globalService: GlobalService, private paginationService: PaginationService) {
+
+
+  constructor(private globalService: GlobalService, private paginationService: PaginationService, private excelService: ExporterService) {
     this.content = globalService.acuseCobroContent;
     this.setPage();
   }
   ngOnInit(): void {
   }
 
+
   search($event) {
     if ($event.keyCode === 13) {
       let index = this.content.findIndex(f => {
-        return f.idPrograma.toString() === this.acuseSearch;
+        return f.folioFormato.toString() === this.acuseSearch;
       });
 
       let element = this.content[index];
       this.aCapturados.push(element);
-      this.content = this.content.filter(f => f.idPrograma.toString() !== this.acuseSearch);
+      this.content = this.content.filter(f => f.folioFormato.toString() !== this.acuseSearch);
       this.acuseSearch = '';
     }
   }
@@ -46,4 +51,14 @@ export class CaptureComponent implements OnInit {
     this.pagination.page = $event;
     this.setPage();
   }
+
+  exportAsXLS(): void {
+    this.excelService.exportToExcel(this.content, 'my_export');
+  }
+
+
+
+
+
+
 }
