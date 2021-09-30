@@ -1,0 +1,5 @@
+1.- cliente de captura y servidor 
+2.- Conectividad (montar en web)
+3.- Usuarios
+4.- Reportes
+5.- Estetica
